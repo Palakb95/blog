@@ -1,0 +1,26 @@
+package com.luv2code.springdemo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.*;
+import com.luv2code.springdemo.dao.CustomerDAO;
+import com.luv2code.springdemo.entity.Customer;
+
+@Controller
+@RequestMapping("/customer")
+public class CustomerConroller {
+	
+	@Autowired
+	private CustomerDAO customerdao;
+	
+	@RequestMapping("/list")
+	private String List(Model theModel)
+	{
+	List<Customer> customers = customerdao.getCustomers();
+	theModel.addAttribute("customers" , customers);
+	 return "customer_login";
+	}
+
+}
